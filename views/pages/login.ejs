@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <style>
+    * { box-sizing:border-box;}
+    body { /*background-image: url("/images/startu.jpg"); */ background-size: cover; max-width: 100%; max-height: 100%; overflow: auto; background-color:white; height: 650px;}
+    fieldset { height:500px; width:500px; text-align: center;}
+    input[type=text] { width: 100%; padding: 12px 20px; margin: 25px 0 0 0; display: inline-block; border:none; border-bottom: 1px solid #ccc;}
+    input[type=password] { width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: none; border-bottom: 1px solid #ccc;}
+    input:hover { border:none; border-bottom: 1px solid rgb(128,115,127);}
+    button { background-color: rgb(128,115,127); color: white; padding: 14px 20px; margin: 25px 0; border: none; cursor: pointer; width: 100%; text-align: center; text-transform:uppercase; border-radius: 14px;}
+    button:hover { opacity: 0.8;}
+    h1 { color: rgb(128,115,127); font-size:42px; text-align:center;}
+    .uname { margin-top: 10px; background-color:white;}
+    .uname:focus { background-color:white;}
+    .pswd { margin-top: 20px;}
+    .signupbtn { width: auto; padding: 10px 18px; background-color: #db2929;}
+    .box { display: block;  position: relative;  z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;  background-color: rgb(255,255,255); padding-top: 0px;}
+    .box1 { background-color: #fefefe; border:none; width: 30%; box-shadow: 10px 10px 20px white; position: absolute; top:10%; left: 35%; display:flex; flex-wrap:wrap;}
+    .close { position: absolute; right: 25px; top: 0; color: #000; font-size: 35px; font-weight: bold;}
+    .link { background-color: #f44336; color: white; font-weight: bolder; text-decoration: none; display: inline-block;background-color: #f44336; text-align: center;}
+    .close:hover, .close:focus { color: red; cursor: pointer;}
+    @media screen and (max-width: 300px) { span.psw { display: block; float: none; margin-left: 50%;} .signupbtn { width: 100%;}}
+    .container { padding: 20px;}
+    .imgcontainer { text-align: center; position: relative; display:inline-block; margin-top: 20px;}
+    img.avatar { width: 30%; border-radius: 0;}
+  </style>
+</head>  
+<body>
+  <div  class="box">
+      <form  id="id01" class="box1">
+        <div class="container">
+          <h1>Login</h1>
+          <div class="imgcontainer">
+            <img src="/images/logo.jpg" alt="Avatar" class="avatar">
+          </div>
+          <div class="uname">
+            <input type="text" placeholder="Enter Username" name="username" required>
+          </div>
+          <div class="pswd">
+            <input type="password" placeholder="Enter Password" name="password" id="pswd" required>
+          </div>
+            <button type="submit" value="Submit" ><b>Login</b></button>
+            <!-- <input type="checkbox" onclick="myFunction()">Show Password-->
+            <label>
+              <input type="checkbox" checked="checked" name="remember" style="float: left;"><span style="float:left; color:#888;">Remember me</span>
+          </div>
+           <!-- <div id="message">
+              <h4>Password must contain the following:</h4>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+        </div>
+      <div class="container" style="background-color:#f1f1f1" id="id01">
+        <span >Don't have an account?</span>
+         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+       <a class="signupbtn link" href="signup.html">Create User </a>
+
+        </div> -->
+      </form>
+  </div>
+<script>
+  $(document).ready(function(){
+
+$("#id01").submit(function(e) {
+//alert("submit");
+ e.preventDefault(); // avoid to execute the actual submit of the form.
+
+ var form = $(this);
+
+     $.ajax({
+            type: "GET",
+            url: '/login/find',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                location.href = "/home"; // show response from the php script.
+            },
+            error: function(){
+              alert("username or password invalid.")
+            }
+     });
+});
+})/*
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var myInput = document.getElementById("pswd");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}  
+function myFunction() {
+  var x = document.getElementById("pswd");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} */
+</script>
+</body>
+</html>

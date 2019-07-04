@@ -1,0 +1,295 @@
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#tech').multiselect({
+                includeSelectAllOption: true
+            });
+            
+        });
+    </script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif; height:700px; overflow-y:hidden;}
+* {box-sizing: border-box;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 45%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid black;
+  background: white;  
+}
+input[type=password]{
+    margin-left: 0px;
+}
+.btn-group
+{
+  width:45%;
+  height: 50px;
+  vertical-align:middle;
+  border:1px solid black;
+      position: relative;
+    display: inline-block;
+
+}
+.btn{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 16 px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none
+  }
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+  border:1px solid skyblue;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:0.4;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+ 
+}
+.signupbtn
+{
+  margin-left: 30px; 
+  width:30%;
+  font-size:18px;
+  padding:14px 20px;
+
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+ 
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container12 {
+  padding: 25px;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  display: block;
+}
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  box-shadow: 4px 4px 4px black;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+  padding-right: 0px;
+  position:relative;
+  top:0;
+  left:0;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  display: block;
+  background-color: #fefefe;
+  margin: auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  max-width: 80%; /* Could be more or less, depending on screen size */
+  width: 60%;
+  padding-right: 0px;
+  position:absolute;
+  top:15%;
+  left:20%;
+  border-radius: 14px;
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.signupbtn
+{
+  width:30%;
+  margin-left: 265px;
+  font-weight: bolder;
+  border-radius:2px;
+} 
+.cancelbtn
+{
+  width: 30%;
+  border-radius:2px;
+}
+.password
+{
+  margin-left: 0px;
+}
+.radio
+{
+  display: inline;
+  margin-left:10%;
+
+}
+.radio1
+{
+  display: inline;
+  margin-left: 40%;
+
+}
+a:link, a:visited, a:hover, a:active, .cancelbtn:hover
+{
+    background-color: #f44336;
+    color: white;
+    font-weight: bolder; 
+    text-decoration: none;
+    display: inline-block;
+    background-color: #f44336;
+    text-align: center;
+}
+
+</style>
+<div id="id01" class="modal" style="display: block; border-radius:0;">
+  <form class="modal-content"id="idForm" method="PUT">
+    <div class="container12">
+      <h1 style="text-align: center;">Update User</h1>
+      <p>
+        <input type="radio" name="userRole" value="25" class="radio" <% if(tdata.userRole == "25") { %>CHECKED <% } %>>  
+        <label for="user">USER/CLIENT</label>
+        <input type="radio" name="userRole" value="35" class="radio1" <% if(tdata.userRole == "35") { %>CHECKED <% } %>>
+        <label for="client">ADMIN</label>
+        <span style="float:right; margin-right:85px;">
+          <input type="radio" name="isActive" value="0" class="radio" <% if(tdata.isActive == "0") { %>CHECKED <% } %>>
+          <label for="enable">Enable</label>
+          <input type="radio" name="isActive" value="1" class="radio1" <% if(tdata.isActive == "1") { %>CHECKED <% } %>>
+          <label for="disable">Disable</label>
+        </span>
+      </p>
+    <input type="text" id="name" name="name" placeholder="Name" value="<%= tdata.name %>" style="margin-bottom:15px" readonly>
+    <input type="text" id="username" name="username" value="<%= tdata.username %>" placeholder="Your username" readonly>
+    <br>
+     <select multiple="multiple" name="skill" id="tech" class="select1">
+                  <% for(var i=0; i < askill.length; i++){%>
+                  <% for(var j=0; j < uskill.length; j++){%>
+                  <option <% if(askill[i].name == uskill[j].skill ) {%> SELECTED <% } %> <%}%> value="<%= askill[i].name %>" ><%= askill[i].name %></option>
+                  <%}%>
+                  </select>
+    
+  <span class="password">
+    <input type="password" id="password" name="password" placeholder="Enter password" onkeyup="check();" required>
+    </span>
+      <br>
+    <input type="text" id="cost" name="cost" value="<%= tdata.cost %>" placeholder="Cost">
+    <!-- <input type="text" id="userrole" name="userRole" placeholder="User role" required> -->
+    <input type="password" id="confirm_password" name="confPassword" placeholder="Confirm password" onkeyup="check();" required>
+    <input type="hidden" id="id" name="id" value="<%= tdata.id %>">
+        <div id="message" style="position:absolute; top:69%; right:34%;"></div>
+        <div class="clearfix">
+          <a class="cancelbtn" href="userList"><strong>CANCEL</strong></a>
+          <button type="submit" value="Submit" class="signupbtn"><strong>UPDATE</strong></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>    
+<script>
+  $(document).ready(function(){
+
+$("#idForm").submit(function(e) {
+//alert("submit");
+ e.preventDefault(); // avoid to execute the actual submit of the form.
+
+ var form = $(this);
+ //var url = form.attr('action');
+
+     $.ajax({
+            type: "PUT",
+            url: '/teamMember/update',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                alert("Successfullly Updated!"); // show response from the php script.
+            }
+     });
+});
+})
+</script>
+<script type="text/javascript">
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = ' Password is matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Password not matching';
+  }
+}
+   
+
+</script>

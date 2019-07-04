@@ -1,0 +1,696 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+  <style>
+    * { box-sizing:border-box;}
+    body,html { height:100%; width:100%; margin:0; padding-top:40px;}
+  .box { float:left; width:50%; height:100px; padding:15px; text-align:center;}
+  .clearfix::after { content:""; clear:both; display:table;}
+  header { width:100%; height: 90px; background:url("/images/header.jpg") no-repeat; background-size: cover; position:relative; top:0; left:0; display:block;}
+  .image { width:70px; height:70px; border-radius:50%; margin:10px; position:relative; top:0; left:0; display:inline-block;}
+  #profile { float:right;}
+  .dropbtn { background-color:inherit; color: white; padding:16px 10px; white-space:nowrap; font-size:16px; border:none; cursor:pointer;}
+  .dropdown { position: relative; top:20px; right:25px; display: inline-block;}
+  .dropdown-content { display: none; position:absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
+  .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block;}
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  .dropdown:hover .dropdown-content { display: block;}
+  .dropdown:hover .dropbtn { background-color:#990066; border-radius:4px;}
+  .projectbtn { background-color:inherit; color: white; padding:16px 10px; white-space:nowrap; font-size:16px; border:none; cursor:pointer;}
+  .projectdown { position:relative; top:20px; right:0; display: inline-block;}
+  .project-content { display: none; position: absolute; top:55px; right:-20px; background-color: #fff; min-width: 127px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;}
+  .project-content a { color: black; padding: 12px 16px; background-color:#fff; border:none; text-decoration: none; display: block;}
+  .project-content a:hover {background-color: #f1f1f1}
+  .projectdown:hover .project-content { display: block;}
+  .projectdown:hover .projectbtn { background-color:#990066; border-radius:4px;}
+  /*.navbar { display:inline-block; float:right; margin-top: 25px;}
+  header .navbar button { text-transform: uppercase; font-size: 18px; font-size: calc(9px + 0.4vw); font-weight: 700; margin-right: 10px;}*/
+  .a1:hover { <!-- width:65px; height:50px; -->}
+  .a1 { background-image:url(https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png); background-position:10px center; background-repeat:no-repeat; background-size:52px; background-color:inherit; border:none; border-radius:4px; text-decoration:none; content:''; display:inline-block; cursor: pointer; padding:10px 20px 10px 35px; text-align:right; display:inline; font-family:"Trebuchet MS", Helvetica, sans-serif ; font-size:18px; transition:all 1s; position: absolute; top:105px; left:-4px; z-index: 999;}  
+  form { vertical-align:top;} 
+  .table { font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; border-collapse:collapse; width:100%;}
+/* The Modal (background) */
+.modal { display:none; position:fixed; z-index:1; padding:100px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:#111111; background-color:rgba(0,0,0,0.6); border-radius:24px;}
+/* Modal Content */
+  .modal-content { position:relative; background-color:#fefefe; margin:auto; padding:0; border:1px solid #888; width:80%; box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); -webkit-animation-name:animatetop; -webkit-animation-duration:0.4s; animation-name:animatetop; animation-duration:0.2s;}
+/* Add Animation */
+  @-webkit-keyframes animatetop { from {top:-300px; opacity:0} to {top:0; opacity:1}}
+  @keyframes animatetop { from {top:-300px; opacity:0} to {top:0; opacity:1}}
+/* The Close Button */
+  .close { color:white; float:right; font-size:28px; font-weight:bold;}
+  .close:hover, .close:focus { color:#888888; text-decoration:none; cursor:pointer;}
+  .modal-header { padding:20px 60px; background-color:#000; color:#0d6f59; height:80px; text-align:center;}
+  .modal-body { padding:20px 20px 20px 20px; color:#ff6347; text-align:left; margin-left:0; width:100%; color:black; height:100%; float:left; background-color:#fff;}
+  .table td, .table th { padding:0; width:15px;}
+  .table td { border-radius:1px solid #eee;}
+  .table tr { padding-bottom:30px; border:none;}
+  .table tr:nth-child(even) { background-color:#f2f2f2;}
+  .table tr:hover { background-color:#ddd;}
+  .table th { border:none; padding:12px 8px 12px 8px; text-align:left; font-weight:bolder; background-color:#0bb9ef; color:#fff; height:65px; width:15px;}
+  .button { background-color:#50bddf; border:none; color:white; padding:6px; font-size:10px; cursor:pointer; margin:5 0 0 2px ;}
+  .button:hover { background-color:RoyalBlue;}
+  .button1 { background-color:#e9967a; border:none; color:white; padding:6px; font-size:10px; cursor:pointer; margin:5px 2px 0 0;}
+  .button1:hover { background-color:RoyalBlue;}
+  .btn { border:none; background-color:inherit; margin-left:15px; text-align:left; padding:4px 4px 4px 10px; font-size:16px; cursor:pointer; display:inline-block; color:green; text-transform: capitalize; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; width:126px;}
+  .btn:hover { background:#eee;}
+  .buttonOfChild { border:none; background-color:inherit; text-align:left; padding:4px 4px 4px 10px; font-size:16px; cursor:pointer; display:inline-block; color:green; text-transform: capitalize; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; width:126px;}
+  .buttonOfChild:hover { background:#eee;}
+  select { height:45px; width:200px; vertical-align:bottom; padding:0 15px 0 15px;}
+  .popUpTable { text-align:left; margin-top:50px; margin-left:0;}
+  /*.userAdd { position:absolute; right:130px; display:inline; height:46px; min-width:56px; width:125px; margin-right:20px; background-color:inherit; color:#fff; border:none; font-family:"Trebuchet MS", Helvetica, sans-serif ; font-size:22px; padding:10px; text-align:right;}
+  .userAdd:hover { text-decoration:underline; cursor: pointer; background-color:#990066;} */
+  #edit { background-color:inherit; background-image:url("/images/edits.png"); background-size:cover; border: none; color:#eee; font-size:10px; cursor:pointer; float:right; display:inline-block; margin-right:15px; height:40px; width:40px;}
+  .calc { background-color:inherit; border:none; color:rgb(255,255,255); font-size:30px; cursor:pointer;}
+  .calc:hover { background-color:rgba(255,255,255,0.6);}
+  #cal { margin:30px 5px  30px 20px;}
+  #cal1 { margin:30px 20px 30px 5px;}
+  #cal, #cal1 { color:white; font-size:20px; text-transform:uppercase; letter-spacing:3px;}
+  .projectDuration { width:100%; height:10px; background-color:black; display:inline-block;}
+  .startDate { border-radius:4px 0 0 4px; margin:0 0 0 5px;}
+  .endDate { border-radius:0 4px 4px 0; margin:0 15px 0 0; }
+  .sticky { position:fixed; top:0; width:100%;}
+  form.search input[type=text] { padding: 10px; font-size: 17px; border: 1px solid grey; border-right:none; float: left; width: 80%; background: #f1f1f1;}
+  form.search button { float: left; width:10%; padding: 10px; background: #f1f1f1; color: black; font-size: 17px; border: 1px solid grey; border-left: none; cursor: pointer;}
+  form.search button:hover { background: #0b7dda;}
+  .search { max-width:600px; width:600px; margin:22px auto;}
+  #calendar { width:75%; border:1px solid #aaa; height:50%;}
+  .sidebar { height:89%; width:43px; position:fixed; z-index:1; top:90px; left:0; background-color:#ba5370; overflow-x:hidden; padding-top:16px; transition:0.5s;}
+.sidebar:hover {  width:160px; transition:0.5s;}
+.sidebar button { padding:6px 14px 6px 10px; background-color:inherit; text-decoration:none; font-size:20px; color:#fff; display:block; border:none;}
+.sidebar button:hover { color: #f1f1f1; cursor:pointer;}
+.main {padding:0 10px;}
+.messageBox { display:none; max-width:480px; width:380px; height:calc(100% - 270px); position:fixed; top:270px; right:6px; animation-name:message; animation-duration:0.3s; animation-fill-mode:forwards; background-color:#eee; border-radius:24px 24px 0 0; z-index:9; background-color:#eee; font-family:Arial, Helvetica, sans-serif; background-image:url("/images/background.jpg"); background-size:cover;}
+@keyframes message {
+  from { right:0;}
+  to { right:20px;}}
+@keyframes closeBox { 
+  from { right:20px;}
+  to { right:0;}}
+thead { background-color:#f1f1f1;}
+    .cont { width:1600px; margin:0 auto; max-width:100%}
+    .rowBlock { display:inline-block; width:100%;}
+    *[class*="col"] { float:left; display:inline-block; padding-left:15px; padding-right:15px;}
+    .col1 { width:8.33%;}
+    .col2 { width:16.67%;}
+    .col3 { width:25%; }
+    .col4 { width:33.33%;}
+    .col5 { width:41.65%;}
+    .col6 { width:50%;}
+    .col7 { width:58.3%;}
+    .col8 { width:66.64%;}
+    .col9 { width:75%;}
+    .col10 { width:83.33%;}
+    .col11 { width:91.67%;} 
+    .col12 { width:100%;}
+    .ulDisplay, .ulDisplayInner { display:none;}
+    #chat { height:40px; width:40px; background-image:url("/images/mail.png"); background-size:cover; background-color:inherit; border:none; margin-left:10px; cursor:pointer;}
+    .dateClick { margin-left:50px;}
+  @media screen and (max-width:1280px) {
+  .dateClick { margin-left:30px;}
+  .btn { width:80px;}
+  .buttonOfChild { width:98px;}
+  .calendar { padding-left:39px;}
+  }
+  @media screen and (max-width:1170px) {
+  .dateClick { margin-left:24px;}
+  .btn { width:80px;}
+  .buttonOfChild { width:98px;}
+  }
+@media screen and (max-width:750px) { 
+  .search { width:320px;}
+  form.search input[type=text] { width:75%;}
+  form.search button { width:25%; padding:9px;}
+  .image { width:60px; height:60px; border-radius:50%;}
+  }
+@media screen and (max-width:480px) { 
+  .sidebar { padding-top:15px;}
+  .sidebar a { font-size:18px;}
+  *[class*="col"] { padding-left:5px; padding-right:5px;}
+  .search { width:140px;}
+  form.search input[type=text] { width:75%;}
+  form.search button { width:25%; padding:9px;}
+  .image { width:46px; height:46px; border-radius:50%; margin-top:20px;}
+  .projectbtn { padding:0;}
+  .dropdown { top:28px; right:41px;}
+  header i { font-size:20px;}
+  .dateClick { margin-left:44px;}
+  .calendar { padding-left:50px;}
+  .main { width:100%; overflow-y:auto; max-height:400px; margin-left:10px;}
+  .col10 {width:100%;}
+}
+  </style>
+}
+<body>
+  <header id="header" style="position:fixed; top:0; left:0; z-index:99;">
+    <script type="text/javascript">
+     
+      function hello(t){
+                  //var navElements = document.querySelectorAll(this.id);
+                  //navElements.forEach(function(navElement) {
+                    var level = parseInt(t.getAttribute("data-level"));
+                    var navElements = document.querySelectorAll('.'+t.id);
+                    var x = document.getElementById(t.id).checked;
+                    if(x == true){
+              //console.log(t.id);
+                      navElements.forEach(function(navElement) {
+                      if(parseInt(navElement.getAttribute("data-level"))-level==1){
+                        navElement.style.display='inline-block';
+                      }
+                      //console.log(navElement,parseInt(navElement.getAttribute("data-level"))-level);
+                    });
+                    }
+                    else if(x == false){
+                     navElements.forEach(function(navElement) {
+                     // console.log(navElement);
+                     if(parseInt(navElement.getAttribute("data-level"))-level>0){
+                        navElement.style.display='none';
+                     }
+                    });
+                    }     
+          }    
+          function changeIcon(l) {
+            //console.log('l:',l);
+            var icon = document.getElementById("y"+l);
+            var icon1 = document.getElementById("z"+l);
+            //console.log(icon,icon1);
+            if(icon.style.display == "none")
+              {icon.style.display = "inline-block";
+              icon1.style.display = "none";}
+            else if(icon.style.display == 'inline-block')
+              {icon.style.display = 'none';
+              icon1.style.display = "inline-block";}
+
+          }   
+      function show(id,ch){
+          var obj = Object.keys(JSON.parse(ch).children).length;
+          //console.log(id,obj);
+          if(obj>0){
+            document.getElementById(id).style.display = 'inline-block';
+          }
+          else{
+            document.getElementById(id).style.display = 'none';
+          }
+          
+      }
+           
+      //var count = 0;
+      //console.log(con);
+      function parent(obj,count,l,cl,m){
+      var con = JSON.parse(obj);
+      var ch = con.children.length;
+      if(con.parent_id == null || con.parent_id == 'null'  ){
+          var htmlData = '';
+
+      htmlData =`<div style="width:100%; max-width:200px; display:inline-block; margin-left:35px;" id = '${l}' data-level = '${count}'>
+                  <div  style="border:1px solid #666; margin-bottom:7px;">
+                  <label for="x${l}" onclick="changeIcon(${l})" style='padding-top:5px; padding-left:5px;'><span style=" border-radius:50%; background-color:#ccc; font-weight:bold; padding:1px 6px; cursor:pointer">${Object.keys(con.children).length}</span></label>
+                  <div class="buttonBottom" style="display:inline-block; padding-top:5px; padding-right:5px;">
+                    <span class="dateClick">
+                      <button style="border:none; color:teal; background-color:inherit;" class="switch" id= "${con.id}" title = "${con.name}" start = "${moment(con.startDate).format("YYYY-MM-DD")}" end= "${moment(con.endDate).format("YYYY-MM-DD")}">${moment(con.endDate).format("DD/MMM")}</button>
+                      <button style="border:none; color:teal; background-color:inherit;" class="clear" id= "${con.id}" title = "${con.name}" start = "${moment(con.startDate).format("YYYY-MM-DD")}" end= "${moment(con.endDate).format("YYYY-MM-DD")}">
+                          clear
+                      </button>
+                    </span>
+                  </div>
+                  <input type="checkbox" name="chck" value="" id='x${l}' onclick='hello(this,${l})' data-level='${count}' style="display:none;">
+                  <span>               
+                    <button class="button1 " style="float:right; margin-right:5px;" onclick="finished(${con.id}); timedRefresh(1000);" value="2" title="Finished"><i class="btn-userRole fa fa-check" style="font-size:8px;"></i></button> 
+                  </span>
+                  <div style="display:inline-block; width:100% height:56px;">
+                    <div class="buttonTop">
+                      <span>
+                        <button class="button btn-userRole" style=" margin-left:5px;" onclick="location.href='/putdetails?id=${con.id}&stDate=${moment(con.startDate).format("YYYY-MM-DD")}&edDate=${moment(con.endDate).format("YYYY-MM-DD")}';" title="Add a Sub-task"><i class="fa fa-plus"></i></button>
+                      </span>
+                      <span style="max-width:106px;">
+                        <button class="btn " id="myBtn" onclick="projectDetailPopup(${con.id},'${con.name}','${con.details}','${moment(con.startDate).format("YYYY-MM-DD")}','${moment(con.endDate).format("YYYY-MM-DD")}','${con.allTechnology}','${con.allTeamMembers}'),'datediff(${con.startDate},${con.endDate})'">${con.name}</button>
+                      </span>
+                    </div>
+                    <div id="sub"> </div>
+                  </div>
+                  <div id='k${l}' style=" border:none; padding:5px;"></div>
+                </div>
+            </div>`;
+            $('.table').append(htmlData);
+            //show('y'+l,JSON.stringify(con));
+      }
+     if( con.children.length > 0 ) {
+        count+=1;
+      for(var j=0 ; j<con.children.length ; j++){ 
+          var htmlData2 = '';
+          htmlData2   =`<div style="width:100%; max-width:200px; display:none;" id='${l+j}'  class='${cl}' data-ch ='${ch}' data-level='${count}' >
+                  <div style=" border:1px solid #666; margin-bottom:7px;">
+                  <label for='x${l+j}' style='padding-top:5px; padding-left:5px;'><span style=" border-radius:50%; background-color:#ccc; font-weight:bold; padding:1px 6px; cursor:pointer">${Object.keys(JSON.parse(JSON.stringify(con.children[j])).children).length}</span></label>
+                      <div class="buttonBottom" style="display:inline-block; padding-top:5px; padding-right:5px;">
+                        <span style="margin-left:20px;"">
+                          <button style="border:none; color:teal; background-color:inherit; cursor:pointer;" class="clickBtn switch" id= "${con.children[j].id}" title = "${con.children[j].name}" start = "${moment(con.children[j].startDate).format("YYYY-MM-DD")}" end= "${moment(con.children[j].endDate).format("YYYY-MM-DD")}">${moment(con.children[j].endDate).format("DD/MMM")}</button>
+                          <button style="border:none; color:teal; background-color:inherit; cursor:pointer;" class="clickBtn clear" id= "${con.children[j].id}" title = "${con.children[j].name}" start = "${moment(con.children[j].startDate).format("YYYY-MM-DD")}" end= "${moment(con.children[j].endDate).format("YYYY-MM-DD")}">
+                          clear
+                          </button>
+                        </span>
+                      </div>
+                    <input type="checkbox" name="chck" value="" class="chck" onclick='hello(this)' id='x${l+j}' data-level='${count}' style="display:none;">
+
+                    <div style="display:inline-block; width:100% height:56px;">
+                      <div class="buttonTop">
+                        <span style="padding-left:5px;">
+                          <button class="button btn-userRole" onclick="location.href='/putdetails?id=${con.children[j].id}&stDate=${moment(con.children[j].startDate).format("YYYY-MM-DD")}&edDate=${moment(con.children[j].endDate).format("YYYY-MM-DD")}';" title="Add a Subtask"><i class="fa fa-plus"></i></button>
+                        </span>
+                        <span style="max-width:106px;">
+                          <button class="buttonOfChild" id="myBtn" style="" onclick="projectDetailPopup(${con.children[j].id},'${con.children[j].name}','${con.children[j].details}','${moment(con.children[j].startDate).format("YYYY-MM-DD")}','${moment(con.children[j].endDate).format("YYYY-MM-DD")}','${con.children[j].allTechnology}','${con.children[j].allTeamMembers}'),'datediff(${con.children[j].startDate},${con.children[j].endDate})'">${con.children[j].name} </button>
+                        </span>
+                        <span>
+                          <button class="button1 " style="float:right;" onclick="finished(${con.children[j].id}); timedRefresh(1000);" value="2" title="Finished"><i class=" fa fa-check" style="font-size:8px;"></i></button>
+                        </span>
+                      </div>
+                      <div id="sub"> </div>
+                    </div>
+                    <div id='k${l+j}' style=" border:none; padding:5px; box-shadow:2px 2px 2px grey;"></div>
+                  </div>
+                  
+                  </div>`;
+            $('#k'+l).append(htmlData2);
+            var ab = JSON.stringify(con.children[j]);
+            cl+=' x'+(l+j);
+            //show('y'+(l+j),ab);
+            parent(ab,count,l+j,cl,m);
+            
+      }
+      }
+    } 
+    </script>
+    <div class="cont">
+      <div class="rowBlock">
+        <div class="col1">
+          <span class="imgcontainer">
+            <img src="/images/logo.jpg" alt="Logo" class="image">
+          </span>
+        </div>
+        <div class="col8">
+          <form class="search ui-widget">
+            <input type="text" name="search" placeholder="Search.." id="tags" class="search1">
+            <button><i class="fa fa-search" style="size:20px;"></i></button>
+          </form>
+        </div>
+      <script>
+        var avail = [];
+        <% for( i = 0; i <data.length; i++) {%>
+        avail.push("<%= data[i].name %>");
+        <% } %> 
+        <% for( i = 0; i <teamData.length; i++) {%>
+        avail.push("<%= teamData[i].name %>");
+        <% } %> 
+        $( "#tags" ).autocomplete({
+        source : avail
+        });
+      </script>
+      <div class="col3">
+        <div class="col7">
+        <span style="float:right;">
+        <div class="projectdown">
+          <% if(req.session.userrole == "35") { %>
+          <button class="btn-userRole projectbtn"  style="float:right; margin-right:0; margin-left:24px; padding-right:0;" title="Add User"><span style="line-height: 1.4em; padding:25px 10px 10px 10px;"><i class="fa fa-cog" style="font-size:20px;color:white; float:left;"></i>Manage</span></button>
+          <div class="project-content">
+            <a href="#"  value="" onclick="location.href='/users';">User Add</a>
+            <a href="userList">User List</a>
+            <a href="skill">Skills</a>
+        </div>
+        <% } %>
+      </div>
+    </span>
+  </div>
+    <div class="col5">
+        <span id="profile">
+          <div class="dropdown">
+            <button class="dropbtn"><span style="line-height: 1.4em; padding:15px 10px 0 4px;"><i class="material-icons" style="font-size:24px; float:left;">account_circle</i>Profile</span></button>
+            <div class="dropdown-content">
+              <a href="#"><b><%= req.session.name %></b></a>
+              <a href="/home/logout" style="color:black;"><i class="fas fa-sign-out-alt">Logout</i></a>
+            </div>  
+          </div>
+        </span>
+      </div>
+    </div>
+  </header>
+  <% if(req.session.userrole == 35) {%>
+    <div class="sidebar" style="white-space:nowrap;">
+      <button  value=""  onclick="location.href='/putDetails';" title="Add Project"><i class="fa fa-plus " style="padding-right:12px;font-size:24px;"></i>Add Project</button>
+      <button onclick="running()"><i class="fa fa-fw fa-envelope" style="padding-right:15px;font-size:24px;"></i> Running</button>
+      <button onclick="completed()"><i class="fa fa-check" style="padding-right:12px;font-size:24px;"></i>Completed</button>
+      <button onclick="deletePolicy()"><i class="fa fa-trash" style="padding-right:12px;font-size:24px;"></i>Dump</button>
+  <% } %>
+    </div>
+    <div class="cont">
+      <div class="rowBlock">
+        <div class="main col2" >
+          <div id="idForm">
+            <div class= "table">
+              <form id='myform'>
+              <% for(var i=0; i < data.length; i++){%>
+              <% if(req.session.userrole == '35'){%>
+              <% if(data[i].completed == 0) {%>
+                <script> parent('<%- JSON.stringify(data[i]) %>',0,'<%=i%>','x<%=i%>',35); </script>
+              <% } %>
+
+              <% if(data[i].completed == 55 || data[i].completed == 45) {%>
+               <div style="width:100%; max-width:200px; display:inline-block; margin-left:35px;">
+                  <div  style="border:1px solid #000;">
+                    <span>
+                      <% if(req.session.userrole == 25) { %>
+                        <button class="button1 " style="float:right;"  onclick="finished(<%= data[i].id %>)";timedRefresh(1000);"value="2" title="Finished"><i class=" fa fa-check" style="font-size:8px;"></i></button>
+                      <% } %>
+                    </span>
+                    <div style="display:inline-block; width:100% height:56px;">
+                      <div class="buttonTop">
+                        <span>
+                          <input type="button" class="button btn-userRole" onclick="location.href='/putDetails?id=<%= data[i].id %>&stDate=<%= moment(data[i].startDate).format("YYYY-MM-DD") %>&edDate=<%= moment(data[i].endDate).format("YYYY-MM-DD") %>';" title="Add a Sub-task"><i class="fa fa-plus"></i>
+                        </span>
+                        <span style="max-width:106px;">
+                          <input type="button" class="btn " id="myBtn" onclick="projectDetailPopup(<%= data[i].id %>,'<%= data[i].name %>','<%= data[i].details %>','<%= moment(data[i].startDate).format("YYYY-MMM-DD") %>','<%= moment(data[i].endDate).format("YYYY-MMM-DD") %>','<%= data[i].allTechnology%>','<%= data[i].allTeamMembers %>'),'datediff(<%= data[i].startDate%>,<%= data[i].endDate%>)'" value="<%= data[i].name %>">
+                        </span>
+                      </div>
+                      <div class="buttonBottom" style="display:inline-block;">
+                        <span style="margin-left:50px;">
+                          <button style="border:none; color:teal; background-color:inherit;" class="clickBtn switch" id="<%= data[i].id%>" title="<%= data[i].name%>" start="<%= moment(data[i].startDate).format('YYYY-MM-DD') %>" end="<%= moment(data[i].endDate).format('YYYY-MM-DD') %>">
+                          <%=  moment(data[i].endDate).format("DD/MMM") %>
+                          </button>
+                          <button style="border:none; color:teal; background-color:inherit;" class="clickBtn clear" id="<%= data[i].id%>" title="<%= data[i].name%>" start="<%= moment(data[i].startDate).format('YYYY-MM-DD') %>" end="<%= moment(data[i].endDate).format('YYYY-MM-DD') %>">
+                          clear
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% } %>   
+              <% } %>
+              <%if(req.session.userrole =='25'){ %>
+              <div class="filter" style="width:100%; max-width:200px; display:inline-block; margin-left:35px;">
+                  <div  style="border:1px solid #000;">
+                    <span>
+                      <% if(req.session.userrole == 25) { %>
+                        <button class="button1 " style="float:right;"  onclick="finished(<%= data[i].id %>)";timedRefresh(1000);"value="2" title="Finished"><i class=" fa fa-check" style="font-size:8px;"></i></button>
+                      <% } %>
+                    </span>
+                    <div style="display:inline-block; width:100% height:56px;">
+                      <div class="buttonTop">
+                        <span>
+                          <input type="button" class="button btn-userRole" onclick="location.href='/putDetails?id=<%= data[i].id %>&stDate=<%= moment(data[i].startDate).format("YYYY-MM-DD") %>&edDate=<%= moment(data[i].endDate).format("YYYY-MM-DD") %>';" title="Add a Sub-task"><i class="fa fa-plus"></i>
+                        </span>
+                        <span style="max-width:106px;">
+                          <input type="button" class="btn " id="myBtn" style="text-transform: capitalize; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; width:126px;" onclick="projectDetailPopup(<%= data[i].id %>,'<%= data[i].name %>','<%= data[i].details %>','<%= moment(data[i].startDate).format("YYYY-MMM-DD") %>','<%= moment(data[i].endDate).format("YYYY-MMM-DD") %>','<%= data[i].allTechnology%>','<%= data[i].allTeamMembers %>'),'datediff(<%= data[i].startDate%>,<%= data[i].endDate%>)'" value="<%= data[i].name %>">
+                        </span>
+                      </div>
+                      <div class="buttonBottom" style="display:inline-block;">
+                        <span style="margin-left:50px;">
+                          <input type="button" style="border:none; color:teal; background-color:inherit;" class="switch" id="<%= data[i].id%>" title="<%= data[i].name%>" start="<%= moment(data[i].startDate).format('YYYY-MM-DD') %>" end="<%= moment(data[i].endDate).format('YYYY-MM-DD') %>" value= "<%=  moment(data[i].endDate).format("DD/MMM") %>">
+                          <input type="button" style="border:none; color:teal; background-color:inherit;" class="clear" id="<%= data[i].id%>" title="<%= data[i].name%>" start="<%= moment(data[i].startDate).format('YYYY-MM-DD') %>" end="<%= moment(data[i].endDate).format('YYYY-MM-DD') %>" value="clear">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <% } %>
+              <% } %>
+            </form>
+
+            
+            </div>
+          </div>
+        </div>
+        <div class="col10 calendar">
+          <div style="width:100%; position:relative; z-index:1;">
+            <div id='calendar'>
+              <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.css">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+              <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/1.6.4/fullcalendar.min.js"></script>
+              <style type="text/css">
+                #calendar { border:none; width:auto;}
+              </style>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <%- partial('../partials/chat.ejs') %>
+  
+    <input type="hidden" id="data" name="data" value="<%= data.length %>">
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p id="pop1" style="display:inline; margin-top:150px; text-transform: uppercase; font-size: 24px; font-weight: bold; font-family: 'Comic Sans MS', cursive, sans-serif;">
+            <span id="new1"></span>
+          </p>
+          <a class="close" onclick="projectDetailPopupClose()">&times;</span></a>
+        </div>
+        <div class="modal-body">
+          <table class="popUpTable">
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif">
+                DETAILS:
+              </td>
+              <td id="pop2" style="display:block; font-size: 16px; font-weight: bold; font-family: Tahoma, Geneva, sans-serif; white-space:nowrap; overflow:auto;">
+                <p id="new1"></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;">
+                TECHNOLOGY:
+              </td>
+              <td id="pop3" style="display:block; text-transform: capitalize; font-size: 16px; font-weight: bold; font-family: Tahoma, Geneva, sans-serif; white-space:nowrap;">
+                <p id="new1"></p>
+              </td>
+            </tr>
+            <tr>
+               <td style="font-size: 20px; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;">
+                TEAMMEMBERS:
+              </td>
+              <td id="pop4" style="display:block; text-transform: capitalize; font-size: 16px; font-weight: bold; font-family: Tahoma, Geneva, sans-serif; white-space:nowrap;">
+                <p id="new1"></p>
+              </td> 
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;">
+                START DATE:
+              </td>
+              <td id="pop5" style="display:block; text-transform: capitalize; font-size: 16px; font-weight: bold; font-family: Tahoma, Geneva, sans-serif; white-space:nowrap;">
+                <p id="new1"></p>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 20px; font-weight: bold; font-family: 'Arial Black', Gadget, sans-serif;">
+                END DATE:
+              </td>
+              <td id="pop6" style="display:block; text-transform: capitalize; font-size: 16px; font-weight: bold; font-family: Tahoma, Geneva, sans-serif; white-space:nowrap;">
+                <p id="new1"></p>
+              </td>
+            </tr>
+          </table>
+          <form id="idForms" method="GET">
+            <input type="hidden" name="id" id="id" value="">
+            <p><button type="submit" style="text-align: center; font-size: 16px;" title="Edit project" class="btn-userRole" id="edit"></button></p> 
+          </form>
+          <p>
+            <button style="text-align: center; font-size: 16px;" title="Start Chat!!" id="chat" onclick="helloog(document.getElementById('id').value)"></button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id='test' style="width: 100% ;height:100px;">
+    </div>
+</body>
+
+<script type="text/javascript">
+function deletePolicy(){
+  $.ajax({
+         type: "GET",
+         url: '/pDetails/delete',
+         success: function(data)
+         {
+           location.reload();
+           window.location.href ='/pDetails/delete'
+         }
+  });
+}
+
+function finished(id){ 
+  $.ajax({
+         type: "PUT",
+         url: '/teamMember/finished',
+         data: {"id":id},
+         success: function(data)
+         {
+           location.reload();
+           alert("Done!");
+         }
+  });
+}
+
+function completed(){
+   $.ajax({
+         type: "GET",
+         url: '/pDetails/completed',
+                    // serializes the form's elements.        
+         success: function(data)
+         {
+          location.reload();
+          window.location.href = '/pDetails/completed'
+          /*alert(data);*/
+         }
+  });
+
+}
+
+function running(){
+   $.ajax({
+         type: "GET",
+         url: '/pDetails/findtech',
+                    // serializes the form's elements.
+         
+         success: function(data)
+         {
+          location.reload();
+          window.location.href = '/pDetails/findtech'
+          /*alert(data);*/
+         }
+  });
+
+}
+
+function logout(){
+  // alert("success");
+  $.ajax({
+         type: "DELETE",
+         url: '/home/logout',
+         data: {"id":id}, // serializes the form's elements.
+         success: function(data)
+         {
+           location.href = "/login"; // show response from the php script.
+         }
+  });
+}
+
+$(document).ready(function(){
+ $("#idForms").submit(function(e) {
+  e.preventDefault(); // avoid to execute the actual submit of the form.
+   var form = $(this);
+     $.ajax({
+            type: "GET",
+            url: '/pDetails/edit?id='+$('#id').val(),
+            //data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                location.href = "/editDetails?id="+a; // show response from the php script.
+            }
+     });
+});
+})
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+var h2 = document.getElementById("new1");
+
+function projectDetailPopup(id,name,details,startDate,endDate,technology,teamMember) {
+  modal.style.display = "block";
+  pop1.innerHTML = name;
+  pop2.innerHTML=details;
+  pop3.innerHTML=technology;
+  pop4.innerHTML=teamMember;
+  pop5.innerHTML=startDate;
+  pop6.innerHTML=endDate;
+  a= id;
+  $('#id').val(id)
+  $('#id').attr("href","/editDetails?id="+a);
+}
+
+function projectDetailPopupClose() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function timedRefresh(timeoutPeriod) {
+  setTimeout("location.reload(true);",timeoutPeriod);
+}
+
+</script>
+<% if(req.session.userrole == 25){ %>
+ <script type="text/javascript">
+   $('.btn-userRole').attr('disabled',true);
+ </script>
+<% } %> 
+  
+<!-- <script type="text/javascript">
+  function parseDate(str) {
+    var mdy = str.split('/');
+    return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
+
+function datediff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+}
+
+</script> -->
+<script type="text/javascript">
+function datediff(date1, date2) {
+dt1 = new Date(date1);
+dt2 = new Date(date2);
+return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+</script>
+<script >
+    $(document).ready(function() {
+
+        $(".clickBtn").click(function() {
+          //disable
+          this.disabled = true;
+
+          $(this).removeClass('switch');
+
+          //do some validation stuff
+        });
+
+        $('.switch').click(function() {
+
+            /*if ($('.switch')){ */
+            var newEvent = {
+                id: $(this).attr('id'),
+                title: $(this).attr('title'),
+                start: $(this).attr('start'),
+                end: $(this).attr('end'),
+                backgroundColor: "#469278"
+            };
+            $('#calendar').fullCalendar( 'renderEvent', newEvent , true);
+          //}     
+        });
+
+        $('.clear').click(function() {
+            var newEvent = {
+                id: $(this).attr('id'),
+                title: $(this).attr('title'),
+                start: $(this).attr('start'),
+                end: $(this).attr('end')
+            };
+            $('#calendar').fullCalendar( 'removeEvents', newEvent.id, true);
+        });
+        $('#calendar').fullCalendar({
+            editable: true
+        });
+
+    });
+</script>
+

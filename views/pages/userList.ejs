@@ -1,0 +1,96 @@
+<style type="text/css">
+	* { box-sizing:border-box;}
+	body, html { width:100%; height:100%; margin:0; padding:0;}
+	body { background-image:linear-gradient( to bottom,rgba(0,255,255,0), rgba(0,255,255,0.3));}
+	.content { width:1170px; margin:50px auto; max-width:100%; box-shadow:10px 10px 10px grey; min-height:700px; background-color:#fff;}
+    .row1 { display:inline-block; width:100%;}
+    *[class*="col"] { float:left; display:inline-block; padding-left:15px; padding-right:15px;}
+    .col1 { width:8%;}
+    .col2 { width:16%;}
+    .col3 { width:25%; }
+    .col4 { width:33%;}
+    .col5 { width:41%;}
+    .col6 { width:50%;}
+    .col7 { width:58%;}
+    .col8 { width:66%;}
+    .col9 { width:75%;}
+    .col10 { width:83%;}
+    .col11 { width:91%;} 
+    .col12 { width:100%;}
+    .headingofUserList { text-align:center; font-weight:bold; background-color:teal; color:#fff;}
+    .contentDisplay { background-color:#f1f1f1; padding-top:15px; padding-bottom:15px;}
+    .data:hover { background-color:#f1f1f1;}
+    h1 { display:inline-block;}
+	a:link, a:visited, a:hover, a:active {
+    color: white;
+    font-weight: bolder; 
+    text-decoration: none;
+    display: inline-block;
+    background-color: #f7594e;
+    text-align: center;
+    float:right; margin:22px 25px 0 0;
+    padding:9px;
+}
+</style>
+<body>
+	<div class="content">
+		<div class="row1">
+			<div class="col12 headingofUserList">
+				<h1>User List</h1>
+				<a href="users">Add User</a>
+			</div>
+			<div class="contentDisplay col12">
+				<div class="col2" style="margin-left:15px;">
+					<span class="contentdetail">Name</span><br>
+				</div>
+				<div class="col2">
+					<span>Uname</span>
+				</div>
+				<div class="col3">
+					<span>Skills</span>
+				</div>
+				<div class="col2">
+					<span>Cost</span>
+				</div>
+				<div class="col3">
+					<span>Edit User</span>
+				</div>
+			</div>
+			<% for(var i=0; i < tdata.length; i++){%>
+			<div class="data col12">
+			<div class="col2" style="margin-left:15px;">
+				<span><%= tdata[i].name %></span>
+			</div>
+			<div class="col2">
+				<span><%= tdata[i].username %></span>
+			</div>
+			<div class="col3">
+				<span><%= tdata[i].allskill ? tdata[i].allskill : '-' %></span>
+			</div>
+			<div class="col2">
+				<span><%= tdata[i].cost %></span>
+			</div>
+			<div class="col3">
+				<input type="hidden" name="id" id="id" value="<%= tdata[i].id %>">
+				<input type="button" class="button" value="Edit" onclick="location.href ='/editUser?id=<%= tdata[i].id %>'">
+			</div>
+		</div>
+			<% } %>
+		</div>
+	</div>
+</body>
+
+<!-- <script type="text/javascript">
+	function editfunc(){
+		var a = (#id).val();
+		$.ajax({
+            type: "GET",
+            url: '/team/edit',
+            //data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                location.href = "/editUser?id="+a; // show response from the php script.
+            }
+     });
+	}
+</script> -->

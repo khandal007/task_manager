@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>skill</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		* { box-sizing:border-box;}
+		html, body { margin:0; padding:0;}
+		.container { width:1170px; margin:0 auto; max-width:100%}
+		.row {  display:inline-block; width:100%;}
+		*[class*="col"] { padding-left:15px; padding-right:15px; float:left; display:inline-block;}
+		.col1 { width:8.33%;}
+		.col2 { width:16.67%;}
+		.col3 { width:25%; }
+		.col4 { width:33.33%;}
+		.col5 { width:41.65%;}
+		.col6 { width:50%;}
+		.col7 { width:58.3%;}
+		.col8 { width:66.64%;}
+		.col9 { width:75%;}
+		.col10 { width:83.33%;}
+		.col11 { width:91.67%;} 
+		.col12 { width:100%;}
+		.headingOfSkill { width:100%; display:inline-block; height:50px; text-align:center; margin-top:15px; margin-bottom:15px;}
+		.bodyOfSkill { width:100%; display:inline-block; height:150px; text-align:center; margin-top:15px; margin-bottom:15px; border:1px solid #ccc; padding-top:50px;}
+		.endOfSkill { width:100%; display:inline-block; text-align:center; margin-top:15px; margin-bottom:15px; border:1px solid #ccc; background-image:linear-gradient( to bottom,rgba(0,255,255,0), rgba(0,255,255,0.3));}
+		.listSkill { font-size:22px; font-weight:bolder;}
+		.editOfSkill { float:right; border:none; background-color:#07b3b3; padding:10px 20px; color:#fff; font-weight:bold; cursor:pointer;}
+		.deleteOfSkill { text-align:center; border:none; background-color:tomato; padding:10px 20px; color:#fff; font-weight:bold; cursor:pointer;}
+		.nameOfSkill { font-size:24px; font-weight:bolder; margin-right:10px; padding-top:25px;}
+		.inputOfSkill { border:none; border-bottom:1px solid #ccc; width:25%; font-size:20px; padding-left:5px; padding-top:2px; padding-bottom:2px}
+		.addOfSkill { border:none; margin-left:25px; font-size:16px; background-color:#abc; cursor:pointer; padding:10px 5px; width:80px;}
+		.headOfList { background-color:#015f5f; padding:15px; color:#000;}
+		.bodyOfList { padding-top:15px; padding-bottom:10px;}
+		.listSkill { font-size:18px; font-weight:bolder;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col12 headingOfSkill">
+				<h1>Add Skills</h1>
+			</div>
+			<div class="col12 bodyOfSkill">
+				<form id ="skill_id">
+					<label class="nameOfSkil  ">Name of skill:</label>
+					<input type="text" name="name" value="<%= techd.name %>" class="inputOfSkill">
+					<button type="submit" class="addOfSkill">Add</button>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col12 endOfSkill">
+				<h1>List of Skills</h1>	
+				<div class="col6 headOfList">
+					<span class="listSkill">Name of Skill</span><br>
+				</div>
+				<!--<div class="col3 headOfList">
+					<span class="listSkill" style="float:right; padding-right:25px;">Edit</span>
+				</div>-->
+				<div class="col6 headOfList">
+					<span class="listSkill" style="text-align:center;">Delete</span>
+				</div>
+				
+				<div class="col12 newSkill">
+					<% for(var i=0; i < techd.length; i++) {%>
+					<div class="col6 bodyOfList">
+						<span class="listSkill"><%= techd[i].name%></span><br>
+					</div>
+					<!--<div class="col3 bodyOfList">
+						<input type="hidden" value="<%= techd[i].id %>">
+						<button class="editOfSkill" onclick="location.href='/skill?id=<%= techd[i].id %>'">Edit</button>
+					</div>-->
+					<div class="col6 bodyOfList">
+						<button class="deleteOfSkill" onclick="deleted(<%= techd[i].id %>)">Delete</button>
+					</div>
+					<% } %>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+    $("#skill_id").submit(function(e) {
+     e.preventDefault(); 
+	 var form = $(this);
+     $.ajax({
+            type: "POST",
+            url: '/technology/create',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+            	location.reload();
+                alert("Successfully Created !"); 
+            }
+     });
+    });
+})
+
+	function deleted(id){
+  
+  $.ajax({
+         type: "DELETE",
+         url: '/technology/delete',
+         data: {"id":id},
+         success: function(data)
+         {
+           location.reload();
+           alert("Deleted !");
+         }
+  });
+}
+</script>

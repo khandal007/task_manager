@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test addproject</title>
+  <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>      
+     <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#tech').multiselect({
+                includeSelectAllOption: true
+            });
+            
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#team').multiselect({
+                includeSelectAllOption: true
+            });
+            
+        });
+    </script>
+</head>
+<style type="text/css">
+  * { box-sizing:border-box;}
+  body { margin:0; width:100%; height:100%;}
+  html { width:100%; height:100%;}
+  .backpic { position:absolute; top:45%; left:26%; height:50%; width:60%; background:url("header.jpg") no-repeat fixed; background-size:cover;}
+  .outerbox { width:40%; padding:0; padding-bottom:15px; border:1px solid #aaa; border-radius:4px; position:absolute; top:7%; left:30%; z-index:99; background-color:rgba(255,255,255,1); box-shadow: 5px 5px 5px grey;}
+  .name, .Editbox, .details { display:flex;}
+  .name > input { width:40%; border:none; border-bottom:1px solid #888}
+  .EditOfbox { width:96%; display:inline-block; margin-top:5px; margin-left:38px; height:50px; border:none; padding:5px;}
+  .Editbox > input { width:40%; border:none; border-bottom:1px solid #888}
+  .details > textarea { width:100%;}
+  .header { background-color:#ad2306; color:white;}
+  .name1{ height:25px; width:25px; position:absolute; top:21%; left:85%; z-index:999;}
+  .img1 { height:25px; width:25px; position:absolute; top:32%; left:85%; z-index:999;}
+  h1 { text-align:center; margin:0; padding:25px;}
+  .labelDetails { margin:5px auto 0 40px; line-height:2.5em;}
+  #name { margin-left:40px; margin-top:35px; margin-right:10px; padding:5px;}
+  #sdate { margin-right:40px; margin-top:35px; margin-left: 10px; padding:5px; border:none; border-bottom:1px solid #888;}
+  #release { margin-left:40px; margin-top:35px; margin-right:10px; padding:5px;}
+  #edate { margin-right:40px; margin-top:35px; margin-left: 10px; padding:5px; border:none; border-bottom:1px solid #888;}
+  #team { margin-left:40px; margin-top:25px; margin-right:10px; padding:5px;}
+  #tech { margin-right:40px; margin-top:25px; margin-left: 10px; padding:5px;}
+  .details { margin:0 40px 15px 40px;}
+  .button1 { margin: 25px 20px 45px 20px; width:200px; height:38px; border:none;}
+  .submit { float:right; background-color:#ff6e4a; border:none; text-transform:uppercase; font-weight:bold; color:white;}
+  .cancel { background-color:teal; display:inline-block; border:none; text-transform:uppercase; font-weight:bold; color:white; cursor:pointer; text-decoration:none; font-size:12px; text-align:center; padding:13px;}
+  .btn-group { width:45%; height: 50px; vertical-align:middle; border:1px solid black; position: relative; display: inline-block; border:none; border:1px solid #ccc;}
+  .btn { width:100%; display:inline-block; padding:6px 12px; margin-bottom:0; font-size:16px; font-weight:normal; line-height:1.428571429; text-align:left; white-space:nowrap; vertical-align:middle; cursor:pointer; background-image:none; border:1px solid transparent; border-radius:4px; user-select:none;}
+  .btn:hover, .btn:active, .btn:focus { border:none; background-color:inherit;}
+  .buttons { width:100%;}
+  .type { margin-left:40px; width:40%; padding:8px 10px;}
+  .multiselect { height:48px; border-radius:unset;} 
+  .dropdown-toggle { height:48px; border-radius:unset;}
+  .btn { height:48px; border-radius:unset;}
+  .btn-default { height:48px; border-radius:unset;}
+  #seeToolTip { margin:5px 40px; color:red;}
+  /*.caret { display:none; width:0; height:0; margin-left:2px; vertical-align:middle; border-top:0 solid; border-right:0 solid transparent; border-left:0 solid transparent;} */
+</style>
+<body>
+    <div  class="outerbox">
+      <div class="header">
+        <h1><i>Edit Project</i></h1>
+      </div>
+      <div>
+        
+        <form id="idForm" method="post">
+            <div>
+              <div class="name">
+                  <input type="text" id="name" name="name" value="<%= data.name %>" placeholder="Project Name"><br>
+                  <div>
+                    <label for="from">Start Date:</label>
+                  <input type="text" id="sdate" name="startDate" value="<%= moment(data.startDate).format('YYYY-MM-DD') %>"><br>
+                  <img src="/images/calendar.jpg" class="name1">
+                </div>
+              </div>
+              <div class="Editbox">
+                  <input type="text" id="release" name="release" value="<%= data.release %>" placeholder="Release">
+                  <div>
+                    <label for="to">End Date:</label>
+                    <input type="text" id="edate" name="endDate" value="<%= moment(data.endDate).format('YYYY-MM-DD') %>"><br>
+                    <img src="/images/calendar.jpg" class="img1">
+                </div>
+              </div>
+              <div class="EditOfbox">
+                  <select multiple="" name="teamMember" id="team">
+                  <% for(var i=0; i < teamData.length; i++){%>
+                  <% for(var j=0; j < data1.length; j++){%>
+                  <option <% if(teamData[i].name == data1[j].teamMember ) { %> SELECTED <% } %> <%}%> value="<%= teamData[i].name %>" ><%= teamData[i].name %></option>
+                  <%}%>
+                  </select>
+                  <select multiple="" name="technology" id="tech">
+                  <% for(var i=0; i < techData.length; i++){%>
+                  <% for(var j=0; j < data2.length; j++){%>
+                  <option <% if(techData[i].name == data2[j].technology ) {%> SELECTED <% } %> <%}%> value="<%= techData[i].name %>" ><%= techData[i].name %></option>
+                  <%}%>
+                  </select>
+                </div>
+                <label for="details" class="labelDetails">Details:</label><br>
+                <div class="details"> 
+                  <textarea name="details" id="details" rows="5" cols="60" placeholder="Details" required><%= data.details %> </textarea>
+                </div>
+                <div class="buttons">
+                  <select class="type" name="completed" id="complete_id" onchange="two()">
+                      <option value="0"  <% if(data.completed == "0"){%> SELECTED <%}%> >Running</option>
+                      <option value="55" <% if(data.completed == "55") {%> SELECTED <%}%> >Completed</option>
+                      <option value="45" <% if(data.completed == "45"){%> SELECTED <%}%> >Dumped</option>
+                  </select>
+                  <script type="text/javascript">
+                    function two(){
+                      var sBox = document.getElementById("complete_id")
+                      if(sBox.options[sBox.selectedIndex].value=='55'){
+                        document.getElementById("seeToolTip").innerHTML = '*Please ensure that all the sub-task must be completed';
+                      }
+                    }
+                  </script>
+                  <select class="type" name="urgency">
+                      <option value="">Normal</option>
+                      <option value="">Moderate</option>
+                      <option value="">Urgent</option>
+                  </select>
+                </div>
+                <p id="seeToolTip"></p>
+                  <input type="hidden" id="id" name="id" value="<%= data.id %>">
+                  <input type="hidden" id="id1" name="id1" value="<%= data %>">
+                  <a value="cancel" href="home" class="cancel button1" style="border:none;">Cancel</a>
+                  <input type="submit" value="Submit" class="submit button1">
+            </div>  
+        </form>
+       
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $("#sdate").datepicker({ dateFormat: 'yy-mm-dd' });
+    $("#edate").datepicker({ dateFormat: 'yy-mm-dd' });
+  </script>
+
+    <script>
+      $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#sdate" )
+        .datepicker({
+          defaultDate: "+1w",
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#edate" ).datepicker({
+        defaultDate: "+1w",
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+
+
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  });
+
+      function date_validate () {
+    var startDate = document.getElementById("sdate").value;
+    var endDate = document.getElementById("edate").value;
+
+    if ((Date.parse(startDate) > Date.parse(endDate))) {
+        return false;
+    }
+    return true;
+    }
+    
+  </script> 
+</body>
+</html>
+
+
+<script>
+$(document).ready(function(){
+
+$("#idForm").submit(function(e) {
+//alert("submit");
+ e.preventDefault(); // avoid to execute the actual submit of the form.
+
+if(date_validate() == false){
+  alert("The End Date must be greater or Equal to start date");
+  return false;
+}
+
+date_validate();
+
+
+ var form = $(this);
+
+     $.ajax({
+            type: "PUT",
+            url: '/pDetails/update',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                alert("Successfully Updated !"); // show response from the php script.
+                location.href="/home"
+            }
+     });
+});
+})
+
+</script>
